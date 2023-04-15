@@ -1,7 +1,6 @@
 ﻿using Market.Data.Contexts;
 using Market.Data.IRepositories;
 using Market.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace Market.Data.Repositories
 {
@@ -31,7 +30,7 @@ namespace Market.Data.Repositories
 
         public List<Product> SelectAllAsync(Predicate<Product> predicate = null)
         {
-            if (predicate is null) 
+            if (predicate is null)
                 predicate = x => true;
 
             return appDbContext.Products.ToList().Where(x => predicate(x)).ToList();
