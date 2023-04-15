@@ -26,13 +26,13 @@ namespace Market.Data.Repositories
             return await appDbContext.Users.ToListAsync();
         }
 
-        public async Task<User> InsertAsync(User user)
+        public async Task InsertAsync(User user)
         {
             await appDbContext.Users.AddAsync(user);
             await appDbContext.SaveChangesAsync();
         }
 
-        public async Task<User> UpdateAsync(User user)
+        public async Task UpdateAsync(User user)
         {
             appDbContext.Users.Update(user);
             await appDbContext.SaveChangesAsync();

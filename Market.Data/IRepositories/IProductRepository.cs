@@ -4,10 +4,10 @@ namespace Market.Data.IRepositories
 {
     public interface IProductRepository
     {
-        Task<Product> InsertAsync(Product entity);
-        Task<Product> UpdateAsync(long id, Product entity);
-        Task<bool> DeleteAsync(Predicate<Product> predicate);
-        Task<Product> SelectAsync(Predicate<Product> predicate = null);
-        List<Product> SelectAllAsync(Predicate<Product> predicate = null);
+        Task InsertAsync(Product entity);
+        Task UpdateAsync(Product entity);
+        Task<bool> DeleteAsync(Product entity);
+        Task<Product> GetAsync(long id);
+        Task<IEnumerable<Product>> GetAllAsync();
     }
 }
