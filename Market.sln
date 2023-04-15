@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Market.Data", "Market.Data\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Market.Api", "Market.Api\Market.Api.csproj", "{7BDD4E3C-FCFF-4015-84ED-F23B32D68948}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.pr", "Market.pr\Market.pr.csproj", "{B886E5C5-E43B-4CD3-8B8A-654CBB0B7C6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.Console", "Market.pr\Market.Console.csproj", "{B886E5C5-E43B-4CD3-8B8A-654CBB0B7C6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
