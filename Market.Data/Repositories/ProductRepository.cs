@@ -7,7 +7,7 @@ namespace Market.Data.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly AppDbContext appDbContext = new AppDbContext(); 
+        private readonly AppDbContext appDbContext = new AppDbContext();
         public async Task<bool> DeleteAsync(Product entity)
         {
             appDbContext.Products.Remove(entity);
