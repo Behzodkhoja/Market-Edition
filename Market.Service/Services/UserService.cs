@@ -1,33 +1,90 @@
-﻿using Market.Service.DTOs;
+﻿using Market.Data.IRepositories;
+using Market.Data.Repositories;
+using Market.Domain.Entities;
+using Market.Service.DTOs;
 using Market.Service.Interfaces;
 
 namespace Market.Service.Services
 {
     public class UserService : IUserService
     {
-        public ValueTask<UserDto> AddAsync(UserCreationDto dto)
+        private readonly IUserRepository userRepository = new UserRepository();
+        public async ValueTask<UserDto> AddAsync(UserCreationDto dto)
         {
-            throw new NotImplementedException();
+            var user = new User
+            {
+                FullName = dto.FullName,
+                Email = dto.Email,
+                Password = dto.Password,
+                CreatedAt = DateTime.UtcNow
+            };
+            await userRepository.InsertAsync(user);
+
+            return new UserDto
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Email = user.Email,
+                Password = user.Password
+            };
         }
 
-        public ValueTask<bool> DeleteAsync(long id)
+        public async ValueTask<bool> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            var user = await userRepository.GetAsync(id);
+
+            if (user == null)
+                return false;
+
+            await userRepository.DeleteAsync(user);
+            return true;
         }
 
-        public ValueTask<List<UserDto>> GetAllAsync()
+        public async ValueTask<IEnumerable<UserDto>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var users = await userRepository.GetAllAsync();
+
+            return users.Select(use => new UserDto
+            {
+                Email = use.Email,
+                Password = use.Password,
+                FullName=use.FullName,
+                Id = use.Id
+            });
         }
 
-        public ValueTask<UserDto> GetAsync(long id)
+        public async ValueTask<UserDto> GetByIdAsync(long id)
         {
-            throw new NotImplementedException();
+            var user = await userRepository.GetAsync(id);
+
+            return new UserDto
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Email = user.Email,
+                Password = user.Password
+            };
         }
 
-        public ValueTask<UserDto> UpdateAsync(long id, UserCreationDto dto)
+        public async ValueTask<UserDto> UpdateAsync(long id, UserUpdateDto dto)
         {
-            throw new NotImplementedException();
+            var user = await userRepository.GetAsync(id);
+            if (user == null)
+                throw new Exception("User not found...");
+
+            user.FullName = dto.FullName;
+            user.Email = dto.Email;
+            user.Password = dto.Password;
+            user.UpdatedAt = DateTime.UtcNow; 
+            await userRepository.UpdateAsync(user);
+
+            return new UserDto 
+            { 
+                Id = user.Id, 
+                FullName = user.FullName,
+                Email =  user.Email, 
+                Password = user.Password 
+            };
         }
     }
 }

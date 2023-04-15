@@ -4,11 +4,11 @@ namespace Market.Service.Interfaces
 {
     public interface IUserService
     {
+        ValueTask<UserDto> GetByIdAsync(long id);
+        ValueTask<IEnumerable<UserDto>> GetAllAsync();
         ValueTask<UserDto> AddAsync(UserCreationDto dto);
-        ValueTask<UserDto> UpdateAsync(long id, UserCreationDto dto);
+        ValueTask<UserDto> UpdateAsync(long id, UserUpdateDto dto);
         ValueTask<bool> DeleteAsync(long id);
-        ValueTask<UserDto> GetAsync(long id);
-        ValueTask<List<UserDto>> GetAllAsync();
 
     }
 }
