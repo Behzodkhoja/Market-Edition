@@ -1,9 +1,4 @@
 ﻿using Market.Service.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Market.Service.Interfaces
 {
@@ -12,6 +7,8 @@ namespace Market.Service.Interfaces
         ValueTask<UserDto> AddAsync(UserCreationDto dto);
         ValueTask<UserDto> UpdateAsync(long id, UserCreationDto dto);
         ValueTask<bool> DeleteAsync(long id);
+        ValueTask<UserDto> GetAsync(long id);
+        ValueTask<List<UserDto>> GetAllAsync();
 
     }
 }
